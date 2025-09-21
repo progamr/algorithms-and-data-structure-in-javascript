@@ -1,6 +1,7 @@
-document.getElementById("button").addEventListener("click", () => {
+document?.getElementById("button")?.addEventListener("click", () => {
   (async () => {
-    const raw = document.getElementById("algName").value;
+    const algNameInput = document?.getElementById("algName") as HTMLInputElement;
+    const raw = algNameInput?.value;
     const algName = String(raw || "").trim().replace(/^\/+|\/+$/g, "");
 
     if (!algName) {
@@ -23,7 +24,7 @@ document.getElementById("button").addEventListener("click", () => {
     ];
 
     // Probe function: fetch transformed module source without executing it
-    const probe = async (spec) => {
+    const probe = async (spec: any) => {
       try {
         const url = new URL(spec, import.meta.url).href;
         const res = await fetch(url, { method: "GET", cache: "no-store" });
@@ -62,3 +63,4 @@ document.getElementById("button").addEventListener("click", () => {
     }
   })();
 });
+ 
